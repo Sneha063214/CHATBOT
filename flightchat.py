@@ -58,10 +58,6 @@ def get_response(user_input):
              result =str(df.loc[idx, 'carrier']) + str(df.loc[idx, 'flight'])+" " +str(df.loc[idx, 'name']) 
              return " this flight number :" +result
              
-        elif "book" in user_input and "tickets" in user_input:
-             return " yes suree!! enter from where to where you want to book tickets"
-             
-            #  if "nyc" in user_input:
                   
              
 

@@ -15,15 +15,16 @@ df['dep_delay'].fillna(df['dep_delay'].median(), inplace=True)
 df['arr_delay'].fillna(df['arr_delay'].median(), inplace=True)
 # print(df.isnull().sum())
 
-
+booking_data={}
 def get_response(user_input):
     # print("Chatbot: Hi!I'm your simple chatbot.\n I am here to help u regarding flight bookings ")
     # print()
 
     # while(True):
         # user_input=input("You: ").lower()
+        
         user_input=user_input.lower()
-        if user_input=="bye":
+        if "bye" in user_input:
             return " Goodbye!! have a nice day 😊"
             # break
         elif "hello" in user_input or "hii" in user_input or "hey" in user_input:
@@ -57,7 +58,10 @@ def get_response(user_input):
              idx=df['dep_delay'].idxmin()
              result =str(df.loc[idx, 'carrier']) + str(df.loc[idx, 'flight'])+" " +str(df.loc[idx, 'name']) 
              return " this flight number :" +result
-        elif "book"  in user_input or "flight" in user_input and  "tickets" in user_input:
+        
+        
+
+        elif "book"  in user_input and  "tickets" in user_input:
             booking_data.clear()
             return "Yess sure!!. Enter from where u want to travel??"
         
@@ -87,12 +91,11 @@ Type 'cancel' to cancel tickets
         
         elif "cancel" in user_input:
              booking_data.clear()
-             return "Tickets Cancelled Now ❌"   
-                  
-             
-
+             return "Tickets Cancelled Now ❌"
+        
+        
         else:
-             return "Chatbot: Sorry ! i could not understand your question. \n check if u have any mistake in the question "
+          return "Chatbot: Sorry ! i could not understand your question. \n check if u have any mistake in the question "
             
         
 
@@ -114,6 +117,12 @@ if __name__=="__main__":
      print("chatbot is running ! Visit http://127.0.0.1:5000 in your browser")
      print("serving forms.html file")
      app.run(debug=True)
+
+
+
+
+
+
 
 
 

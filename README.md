@@ -34,10 +34,10 @@ Longest arrival delay
 🛠️ Technologies Used
 
 
-Python 🐍
+Python 
 
 
-Pandas 📊 (for data handling)
+Pandas (for data handling)
 
 
 
@@ -128,46 +128,6 @@ You: Which flight has the longest departure delay?
 Chatbot: this flight number : AA123
 
 
-⚠️ Limitations
-
-
-Not AI-based (rule-based chatbot)
-
-
-Limited understanding of user input
-
-
-Depends heavily on exact keywords
-
-
-No real-time booking functionality
-
-
-
-🔮 Future Improvements
-
-
-Add NLP using libraries like NLTK or spaCy
-
-
-Integrate real-time flight APIs
-
-
-Build a web interface (Flask / React)
-
-
-Improve conversation flow
-
-
-
 👩‍💻 Author
 Sneha Sharma
-
-If you want, I can also:
-
-
-convert this into a GitHub-ready README with badges
-
-
-or help you connect this chatbot to a Flask web app (very useful for your AI dev goal 🚀)
 

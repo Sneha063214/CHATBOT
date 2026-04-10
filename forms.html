@@ -1,0 +1,193 @@
+<html>
+    <head>
+        <title>FORMS</title>
+       <!-- <link rel="stylesheet" href="style.css"> -->
+       <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+       <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html,body{
+    height:100%;
+    width:100%;
+}
+    .navbar{
+    /* background-color: cornflowerblue;
+    min-height: 30px;
+    display: flex;
+    
+    justify-content: space-evenly;
+    /* justify-content: center; */
+    /* align-items: center; */
+   
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  background-color: rgb(48, 40, 40);
+      
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  height: 80px;
+  color:white;
+}
+img{
+    
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    border:2px solid pink;
+}
+.list ul{
+    
+    display:flex;
+    gap:130px;
+   
+    
+    list-style: none;
+    
+}
+li{
+    padding-bottom: 50px;
+}
+a{
+    text-decoration: none;
+    color:white;
+}
+.analyse{
+    
+    background-color: rgb(207, 193, 193);
+    min-height: 500px;
+    text-align: center;
+     border: 2px solid rgb(208, 142, 142);
+}
+.chatbot{
+    background-color: rgb(207, 193, 193);
+    min-height: 500px;
+    display: flex;
+    /* align-items: center; */
+    flex-direction:column;
+    align-items: end;
+     flex-direction:row;
+     justify-content: end;
+     border: 2px solid rgb(208, 142, 142);
+     
+
+    
+    
+}
+.box2{
+    background-color: aliceblue;
+    height:250px;
+    width:300px;
+    border:2px solid black;
+    margin:50px;
+}
+.box2{
+    /* display: flex;
+    flex-direction: column; */
+    position: fixed;
+  bottom: 20px;   
+  right: 20px;    
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+    
+}
+.typing{
+    display:flex;
+}
+.chatarea{
+    overflow: scroll;
+}
+
+input {
+      margin-top: auto;
+      padding: 8px;
+      border: none;
+      border-top: 1px solid #ccc;
+      width: 80%;
+      outline: none;
+      height:30px;
+      
+    }
+    button{
+      height:30px;
+      width:20%;
+      
+    }
+       </style>
+    </head>
+    <body>
+        
+        <div class="parent">
+            <div class="navbar">
+                <img src="images/flightlogo.png" alt="" >
+                <div class="list">
+                    <ul>
+                        <li>HOME</li>
+                        <li>ABOUT</li>
+                        <li><a href="login.html">LOGIN</a></li>
+                        <li>REGISTER</li>
+                        <li>CONTACT</li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="analyse">
+                Data analysed here
+            </div>
+                <div class="chatbot" >
+                    <!-- <div class="box1">
+                        
+                        
+                    </div> -->
+                    <div class="box2" >
+                        <div class="chatarea"id="chat"></div>
+                        <div class="typing" >
+                          <input type="text" id="input" placeholder="Hi , how can I help??" onkeypress="if(event.key=='Enter') sendMessage()">
+                          <button type="submit" id="send" onclick="sendMessage()"><i class="ri-send-ins-line"></i></button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <script>
+            function sendMessage(){
+                const input=document.getElementById('input');
+                const chat=document.getElementById('chat');
+                const message=input.value.trim();
+                if(!message){
+                    return;
+                }
+                // chat.innerHTML+='<div> class="user">You: '+message+ '</div>';
+                chat.innerHTML += '<div class="user">You: ' + message + '</div>';
+                input.value='';
+                //send to flash backend
+                fetch('/chat',{
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({message:message})
+                })
+                .then(response=>response.json())
+                .then(data=>{
+                    chat.innerHTML+='<div class="bot">Bot: '+data.response+'</div>';
+                    chat.scrollTop=chat.scrollHeight;
+
+                });
+                
+            }
+        </script>
+
+    </body>
+
+</html>

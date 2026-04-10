@@ -57,7 +57,37 @@ def get_response(user_input):
              idx=df['dep_delay'].idxmin()
              result =str(df.loc[idx, 'carrier']) + str(df.loc[idx, 'flight'])+" " +str(df.loc[idx, 'name']) 
              return " this flight number :" +result
-             
+        elif "book"  in user_input or "flight" in user_input and  "tickets" in user_input:
+            booking_data.clear()
+            return "Yess sure!!. Enter from where u want to travel??"
+        
+        elif "from" in user_input:
+             booking_data['source'] = user_input.split("from")[-1].strip()
+             return "To where??"
+        elif "to" in user_input:
+             booking_data['destination'] = user_input.split("to")[-1].strip()
+             return "OK GREAT ! \n Now enter travel date "
+        elif "202" in user_input:
+             booking_data['date'] = user_input
+             return "How many passengers?"
+        elif user_input.isdigit():
+             booking_data['passengers'] = int(user_input)
+             return f"""
+Booking Summary:
+From: {booking_data.get('source')}
+To: {booking_data.get('destination')}
+Date: {booking_data.get('date')}
+Passengers: {booking_data.get('passengers')}
+
+Type 'confirm' to proceed.
+Type 'cancel' to cancel tickets
+"""
+        elif "confirm" in user_input:
+             return " Yayy!! Tickets are ready to be booked "
+        
+        elif "cancel" in user_input:
+             booking_data.clear()
+             return "Tickets Cancelled Now ❌"   
                   
              
 
